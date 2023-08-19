@@ -1,0 +1,40 @@
+/* TestimonialCarousel.css */
+.feedback{
+  background-image:url("../assests/bg-1.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.testimonial-carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.6);
+ 
+}
+
+.testimonial-item {
+ 
+  text-align: center;
+  padding: 20px;
+}
+
+.testimonial-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+}
+
+.testimonial-comment {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #3f3f3f;
+  margin-bottom: 10px;
+}
+
+.testimonial-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #292626;
+}
