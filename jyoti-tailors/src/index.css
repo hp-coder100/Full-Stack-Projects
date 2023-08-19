@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Ubuntu:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --primary-color : #005fd3;
+  --secondary-color:#A3E4DB;
+  --bg-color:#FFF8F3;
+  --body-bg:#cecece;
+  --text-primary:rgb(36, 36, 36);
+  --text-secondary:gray;
+}
+
+
+body {
+  margin: 0;
+  padding:0;
+  background-color: var(--body-bg);
+  font-family:'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
