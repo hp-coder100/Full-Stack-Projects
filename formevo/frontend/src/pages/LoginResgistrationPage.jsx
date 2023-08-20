@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import Loadder from "../components/Loadder";
 import Popup from "../components/Popup";
 import ResetPassword from "./ResetPassword";
-
+import ResendVerificationLink from "./ResendVerificationLink";
 function LoginResgistrationPage() {
   const { tab } = useParams();
   const [popUpMsg, setPopUpMsg] = useState("");
@@ -42,10 +42,10 @@ function LoginResgistrationPage() {
               setLoading={setLoading}></ResetPassword>
           )}
           {tab === "resendlink" && (
-            <ResetPassword
+            <ResendVerificationLink
               setPopUpMsg={setPopUpMsg}
               setPopUpShow={setPopUpShow}
-              setLoading={setLoading}></ResetPassword>
+              setLoading={setLoading}></ResendVerificationLink>
           )}
         </div>
       </div>
