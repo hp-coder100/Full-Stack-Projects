@@ -7,6 +7,7 @@ const SupportMessage = require("./models/SupportMessage");
 const app = express();
 app.use(express.json());
 const allowedOrigin = process.env.ORIGIN;
+console.log(allowedOrigin);
 const corsOptions = {
   origin: allowedOrigin, // Replace with your frontend's origin
   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
