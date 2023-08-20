@@ -11,6 +11,9 @@
     "name": "Hemant Prajapati",
     "email": "developer.hp100@gmail.com"
   },
+  "engines": {
+    "node": ">=14.20.0 <15"
+  },
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
