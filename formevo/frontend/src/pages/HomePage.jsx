@@ -23,7 +23,7 @@ function HomePage() {
     {
       title: "User-friendly Dashboard",
       description:
-        "Manage your forms, view submissions, and analyze data all from your intuitive FormEvo dashboard.",
+        "Manage your forms, view submissions, and analyze data all from your intuitive F4easy dashboard.",
     },
   ];
 
@@ -40,7 +40,7 @@ function HomePage() {
               <div className="text-3xl md:text-4xl font-black tracking ">
                 Welcome to{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-sky-600">
-                  FormEvo
+                  F4easy
                 </span>
                 : The Ultimate Form Builder
               </div>
@@ -48,10 +48,10 @@ function HomePage() {
                 Create Beautiful Forms Effortlessly
               </div>
               <div className="mt-2">
-                FormEvo is a powerful and user-friendly form builder that allows
+                F4easy is a powerful and user-friendly form builder that allows
                 you to design stunning forms with ease. Whether you're
                 collecting feedback, conducting surveys, or gathering
-                information, FormEvo provides you with the tools you need to
+                information, F4easy provides you with the tools you need to
                 create the perfect form for your needs.
               </div>
               {!user && (

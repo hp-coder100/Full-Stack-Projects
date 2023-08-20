@@ -33,7 +33,7 @@ function VerifyEmail() {
       verify();
       setVerified(true);
     }
-  }, []);
+  }, [verified]);
 
   return (
     <>
