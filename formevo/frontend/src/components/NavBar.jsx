@@ -4,6 +4,7 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { useStateValue } from "../state/StateProvider";
 import Popup from "./Popup";
+import logo from "../assets/logo512.png";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 function NavBar() {
   const navigateTo = useNavigate();
@@ -33,8 +34,9 @@ function NavBar() {
         <div className="container mx-auto flex flex-wrap sm:flex-nowrap max-w-6xl justify-between items-center">
           <div
             onClick={() => navigateTo("/")}
-            className="cursor-pointer font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-blue-800 to-sky-600">
-            FormEvo
+            className="flex items-center cursor-pointer font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-blue-800 to-sky-600">
+            <img src={logo} alt="" width={"40"} height={"40"}></img>
+            <span className="inline ms-2">F4easy</span>
           </div>
           <div onClick={() => setMenuShow(!menuShow)} className="sm:hidden">
             <MenuRoundedIcon></MenuRoundedIcon>
