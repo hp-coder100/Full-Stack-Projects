@@ -1,4 +1,4 @@
-![Screenshot](formevo/frontend/Screenshots/homepage (1).png)
+![Screenshot](frontend/Screenshots/homepage.png)
 
 # F4easy
 
