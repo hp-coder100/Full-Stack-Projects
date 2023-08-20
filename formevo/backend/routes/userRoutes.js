@@ -44,6 +44,39 @@ const sendResetPasswordEmail = async (email, token) => {
   });
 };
 
+
+
+
+
+userRoutes.post("/resendVerificationLink", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const user = await User.findOne({ email });
+    if (user) {
+      user.verificationToken = await bcrypt.hash(
+        `${user.email}formevo${user.fullname}verification${user.password}`,
+        10
+      );
+      user.verificationToken = user.verificationToken.replace(/\//g, "_");
+      user.save();
+      await sendVerificationEmail(user.email, user.verificationToken)
+        .then(() => {
+          res
+            .status(200)
+            .json({ message: "Verification Link has been sent. Please check your inbox or spam folder." });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.json({ message: "Error : Can't send the verification email." });
+        });
+    } else {
+      res.status(400).json({ message: "User Not Found with this email." });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal Error." });
+  }
+});
+
 userRoutes.post("/resetpassword", async (req, res) => {
   try {
     const email = req.body.email;

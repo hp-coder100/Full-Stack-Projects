@@ -177,7 +177,7 @@ function SingupForm({ setPopUpMsg, setPopUpShow, setLoading }) {
             Already have an account yet?{" "}
             <div
               onClick={() => navigateTo("/auth/login")}
-              className="inline font-medium text-primary-600 hover:underline">
+              className="inline font-medium text-blue-600 hover:underline font-semibold">
               Log In
             </div>
           </div>

@@ -41,6 +41,12 @@ function LoginResgistrationPage() {
               setPopUpShow={setPopUpShow}
               setLoading={setLoading}></ResetPassword>
           )}
+          {tab === "resendlink" && (
+            <ResetPassword
+              setPopUpMsg={setPopUpMsg}
+              setPopUpShow={setPopUpShow}
+              setLoading={setLoading}></ResetPassword>
+          )}
         </div>
       </div>
     </>

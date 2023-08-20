@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import ContactUs from "../components/ContactUs";
 import homeForm from "../assets/Forms-home.png";

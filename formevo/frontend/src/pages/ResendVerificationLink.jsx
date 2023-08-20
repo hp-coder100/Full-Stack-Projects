@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosResetPassword } from "../apiservice/MyAxios";
+import { axiosResendVerificationLink } from "../apiservice/MyAxios";
 
-function ResetPassword({ setPopUpMsg, setPopUpShow, setLoading }) {
+function ResendVerificationLink({ setPopUpMsg, setPopUpShow, setLoading }) {
   const [email, setEmail] = useState(null);
   const navigateTo = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
-
     if (!email) {
       setPopUpMsg("Please Enter Your Email");
       setPopUpShow(true);
     } else {
       setLoading(true);
-      const result = await axiosResetPassword(email);
+      const result = await axiosResendVerificationLink(email);
       setLoading(false);
       setPopUpMsg(result.msg);
       setPopUpShow(true);
@@ -25,7 +24,7 @@ function ResetPassword({ setPopUpMsg, setPopUpShow, setLoading }) {
     <>
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8  rounded-xl border border-gray-200 shadow-lg shadow-gray-800">
         <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
-          Reset Password
+          Resend Verification Link
         </h1>
         <form className="space-y-4 md:space-y-6" action="#">
           <div>
@@ -63,4 +62,4 @@ function ResetPassword({ setPopUpMsg, setPopUpShow, setLoading }) {
   );
 }
 
-export default ResetPassword;
+export default ResendVerificationLink;

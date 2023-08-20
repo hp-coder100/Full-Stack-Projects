@@ -9,11 +9,11 @@ formRoutes.post("/", async (req, res) => {
       ...req.body,
     });
 
-    res.status(201).json(newForm._id);
-  } catch (error) {
     res
-      .status(500)
-      .json({ message: "Failed to save the form."});
+      .status(201)
+      .json({ message: "form created successfully", formId: newForm._id });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to save the form." });
   }
 });
 
@@ -24,11 +24,9 @@ formRoutes.get("/all/:userId", async (req, res) => {
 
     const forms = await Form.find({ userId }).sort({ _id: -1 });
 
-    res.json(forms);
+    res.json({ message: "forms fetched successfully", forms });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to retrieve forms."});
+    res.status(500).json({ message: "Failed to retrieve forms." });
   }
 });
 
@@ -38,11 +36,9 @@ formRoutes.get("/:formId", async (req, res) => {
     const formId = req.params["formId"];
 
     const forms = await Form.findOne({ _id: formId });
-    res.json(forms);
+    res.json({ message: "Form loaded successfully", forms });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to retrieve forms."});
+    res.status(500).json({ message: "Failed to retrieve forms." });
   }
 });
 
@@ -52,11 +48,9 @@ formRoutes.get("/responses/:formId", async (req, res) => {
     const formId = req.params["formId"];
 
     const response = await Response.find({ formId });
-    res.json(response);
+    res.json({ message: "Responses Loaded Successfully", response });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to retrieve forms." });
+    res.status(500).json({ message: "Failed to retrieve forms." });
   }
 });
 
@@ -67,9 +61,7 @@ formRoutes.delete("/:formId", async (req, res) => {
     await Form.deleteOne({ _id: formId });
     res.status(200).json({ message: "formDeleted Succussfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to retrieve forms."});
+    res.status(500).json({ message: "Failed to retrieve forms." });
   }
 });
 //API endpoint to save response
@@ -79,11 +71,9 @@ formRoutes.post("/submit", async (req, res) => {
       ...req.body,
     });
 
-    res.status(201).json(response);
+    res.status(201).json({message:"form saved Successfully"});
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to Submit the Form" });
+    res.status(500).json({ message: "Failed to Submit the Form" });
   }
 });
 

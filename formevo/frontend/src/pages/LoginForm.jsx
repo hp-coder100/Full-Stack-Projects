@@ -8,7 +8,6 @@ function LoginForm({ setPopUpMsg, setPopUpShow, setLoading }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const validate = () => {
     if (email === "" || password === "") {
       setError("All fields are required");
@@ -124,10 +123,17 @@ function LoginForm({ setPopUpMsg, setPopUpShow, setLoading }) {
           Sign in
         </button>
         <div className="text-sm font-light text-gray-900 ">
+          <div
+            onClick={() => navigateTo("/auth/resendlink")}
+            className="inline font-medium text-blue-600 hover:underline font-semibold">
+            Resend Verification Link
+          </div>
+        </div>
+        <div className="text-sm font-light text-gray-900 text-center ">
           Don’t have an account yet?{" "}
           <div
             onClick={() => navigateTo("/auth/signup")}
-            className="inline font-medium text-primary-600 hover:underline">
+            className="inline font-medium text-blue-600 hover:underline font-semibold">
             Sign up
           </div>
         </div>

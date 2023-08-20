@@ -29,6 +29,20 @@ function VerifyEmail() {
     if (user) {
       dispatch({ type: "SET_USER", user: null });
     }
+    const verify = async () => {
+      if (token) {
+        console.log("token", token);
+        setLoading(true);
+        const result = await axiosVerifyEmail(token);
+        if (result.response) {
+          setPopUpMsg(result.msg);
+          setLoading(false);
+        } else {
+          setPopUpMsg(result.msg);
+          setLoading(false);
+        }
+      }
+    };
     if (!verified) {
       verify();
       setVerified(true);
