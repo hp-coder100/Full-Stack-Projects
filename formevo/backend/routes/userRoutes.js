@@ -5,6 +5,8 @@ const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const userRoutes = express.Router();
 // API endpoint for user registration
+
+const allowedOrigin = process.env.ORIGIN;
 const transporter = nodemailer.createTransport({
   // Configure your email transport here
   host: process.env.SMTP_EMAIL,
@@ -21,7 +23,7 @@ const sendVerificationEmail = async (email, token) => {
     from: process.env.SMTP_USER,
     to: email,
     subject: "Verify Your Email",
-    text: `Click the following link to verify your email: http://localhost:3000/verify/${token} `,
+    text: `Click the following link to verify your email: ${allowedOrigin}/verify/${token} `,
   };
 
   await transporter.sendMail(mailOptions).catch((error) => {
@@ -34,7 +36,7 @@ const sendResetPasswordEmail = async (email, token) => {
     from: process.env.SMTP_USER,
     to: email,
     subject: "Reset Your Password",
-    text: `Click the following link to reset your password : http://localhost:3000/updatepassword/${token} `,
+    text: `Click the following link to reset your password : ${allowedOrigin}/updatepassword/${token} `,
   };
 
   await transporter.sendMail(mailOptions).catch((error) => {
