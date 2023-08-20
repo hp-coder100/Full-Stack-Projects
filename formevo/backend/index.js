@@ -11,20 +11,20 @@ const corsOptions = {
   origin: allowedOrigin, // Replace with your frontend's origin
   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors());
-// app.use((req, res, next) => {
-//   const requestOrigin = req.get("origin");
+app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  const requestOrigin = req.get("origin");
 
-//   if (requestOrigin === allowedOrigin) {
-//     // Allow the request to proceed to the router
-//     next();
-//   } else {
-//     // Throw an error for other origins
-//     res
-//       .status(403)
-//       .json({ error: "Forbidden: Access from this origin is not allowed." });
-//   }
-// });
+  if (requestOrigin === allowedOrigin) {
+    // Allow the request to proceed to the router
+    next();
+  } else {
+    // Throw an error for other origins
+    res
+      .status(403)
+      .json({ error: "Forbidden: Access from this origin is not allowed." });
+  }
+});
 app.use("/api/form", formRoutes);
 app.use("/api/user", userRoutes);
 
