@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://formevo.onrender.com/api";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 ///Singup User....
 const axiosSingUp = async (user) => {
   const result = await axios
@@ -9,17 +9,16 @@ const axiosSingUp = async (user) => {
       console.log(res);
       const userId = res?.data?.userId;
       const userName = res?.data?.userName;
-      console.log("User Created with Uid:" + userId);
+      console.log(res?.data?.message);
       return {
         response: true,
-        msg: "User Create Successfully.A verification link has been sent to your email. Please verify it to Log in.",
+        msg: res?.data?.message,
         userId: userId,
         userName: userName,
       };
     })
     .catch((error) => {
       console.log(error?.response);
-      console.log(error?.response?.data?.verificationToken);
       const result = {
         response: false,
         msg: error?.response ? error?.response?.data?.message : "Network Error",
@@ -30,6 +29,26 @@ const axiosSingUp = async (user) => {
   return result;
 };
 
+const axiosResendVerificationLink = async (email) => {
+  const result = await axios
+    .post(`${BASE_URL}/user/resendVerificationLink`, { email })
+    .then((res) => {
+      return {
+        response: true,
+        msg: res?.data?.message,
+      };
+    })
+    .catch((error) => {
+      console.log(error?.response);
+      const result = {
+        response: false,
+        msg: error?.response ? error?.response?.data?.message : "Network Error",
+      };
+      return result;
+    });
+  return result;
+};
+
 //verificaiton user email
 const axiosVerifyEmail = async (token) => {
   const result = await axios
@@ -37,7 +56,7 @@ const axiosVerifyEmail = async (token) => {
     .then((res) => {
       return {
         response: true,
-        msg: "Email is Verified Successfully. You can login now.",
+        msg: res?.data?.message,
       };
     })
     .catch((error) => {
@@ -62,7 +81,7 @@ const axiosLogin = async (user) => {
       console.log("User Successfully Loggedin");
       return {
         response: true,
-        msg: "User Loggedin Successfully.",
+        msg: res?.data?.messsage,
         userId: userId,
         userName: userName,
       };
@@ -86,7 +105,7 @@ const axiosResetPassword = async (email) => {
       console.log(res);
       return {
         response: true,
-        msg: "Reset link has been to your email.",
+        msg: res?.data?.message,
       };
     })
     .catch((error) => {
@@ -108,7 +127,7 @@ const axiosUpdatePassword = async (token, password) => {
       console.log("Password Updated Successfully");
       return {
         response: true,
-        msg: "Password Updated Successfully",
+        msg: res?.data?.message,
       };
     })
     .catch((error) => {
@@ -130,8 +149,8 @@ const axiosCreateForm = async (form) => {
   const result = await axios
     .post(`${BASE_URL}/form`, form)
     .then((res) => {
-      console.log("Form created Successfully");
-      return { response: true, msg: "Form Created Successully." };
+      console.log(res?.data?.message);
+      return { response: true, msg: res?.data?.message };
     })
     .catch((error) => {
       console.log(error?.response);
@@ -153,7 +172,7 @@ const axiosLoadAllForms = async (userId) => {
       const formData = res?.data;
       return {
         response: true,
-        msg: "All Forms Loaded Successfully",
+        msg: res?.data?.message,
         data: formData,
       };
     })
@@ -174,7 +193,7 @@ const axiosLoadForm = async (formId) => {
     .get(`${BASE_URL}/form/${formId}`)
     .then((res) => {
       const data = res.data;
-      return { response: true, msg: "Form Loaded Successfully", data: data };
+      return { response: true, msg: res?.data?.message, data: data };
     })
     .catch((error) => {
       console.log(error?.response);
@@ -191,9 +210,9 @@ const axiosLoadForm = async (formId) => {
 const axiosSubmitFormResponse = async (data) => {
   const result = await axios
     .post(`${BASE_URL}/form/submit`, data)
-    .then(() => {
-      console.log("Form Submitted");
-      return { response: true, msg: "Form Submitted" };
+    .then((res) => {
+      console.log(res?.data?.message);
+      return { response: true, msg: res?.data?.message };
     })
     .catch((error) => {
       console.log(error?.response);
@@ -210,9 +229,9 @@ const axiosSubmitFormResponse = async (data) => {
 const axiosDeleteForm = async (formId) => {
   const result = await axios
     .delete(`${BASE_URL}/form/${formId}`)
-    .then(() => {
-      console.log("Form deleted successfully.");
-      return { response: true, msg: "Form deleted successfully." };
+    .then((res) => {
+      console.log(res?.data?.message);
+      return { response: true, msg: res?.data?.message };
     })
     .catch((error) => {
       console.log(error?.response);
@@ -233,7 +252,7 @@ const axiosLoadResponses = async (formId) => {
       const data = res?.data;
       return {
         response: true,
-        msg: "Responses Loaded Successfully",
+        msg: res?.data?.message,
         data: data,
       };
     })
@@ -254,9 +273,7 @@ const axiosSupportMessage = async (data) => {
     .then((res) => {
       return {
         response: true,
-        msg: res?.data?.message
-          ? res?.data?.message
-          : "Message Sent Successfully.",
+        msg: res?.data?.message,
       };
     })
     .catch((error) => {
@@ -283,4 +300,5 @@ export {
   axiosLoadForm,
   axiosLoadResponses,
   axiosSubmitFormResponse,
+  axiosResendVerificationLink,
 };
