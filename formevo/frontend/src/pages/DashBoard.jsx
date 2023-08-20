@@ -142,7 +142,9 @@ function DashBoard() {
                         <div
                           onClick={() => {
                             navigator.clipboard.writeText(
-                              "http://localhost:3000/formService/" + item._id
+                               window.location.protocol +
+      "//" +
+      window.location.host + "/formService/" + item._id
                             );
                             setToastShow(true);
                             setTimeout(() => setToastShow(false), 2000);
