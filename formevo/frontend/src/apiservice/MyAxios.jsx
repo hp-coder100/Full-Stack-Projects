@@ -169,11 +169,10 @@ const axiosLoadAllForms = async (userId) => {
   const result = await axios
     .get(`${BASE_URL}/form/all/${userId}`)
     .then((res) => {
-      const formData = res?.data;
       return {
         response: true,
         msg: res?.data?.message,
-        data: formData,
+        data: res?.data?.forms,
       };
     })
     .catch((error) => {
@@ -192,8 +191,11 @@ const axiosLoadForm = async (formId) => {
   const result = await axios
     .get(`${BASE_URL}/form/${formId}`)
     .then((res) => {
-      const data = res.data;
-      return { response: true, msg: res?.data?.message, data: data };
+      return {
+        response: true,
+        msg: res?.data?.message,
+        data: res?.data?.forms,
+      };
     })
     .catch((error) => {
       console.log(error?.response);
@@ -249,11 +251,10 @@ const axiosLoadResponses = async (formId) => {
   const result = await axios
     .get(`${BASE_URL}/form/responses/` + formId)
     .then((res) => {
-      const data = res?.data;
       return {
         response: true,
         msg: res?.data?.message,
-        data: data,
+        data: res?.data?.response,
       };
     })
     .catch((error) => {
