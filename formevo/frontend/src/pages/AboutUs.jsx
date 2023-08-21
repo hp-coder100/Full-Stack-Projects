@@ -59,7 +59,7 @@ function AboutUs() {
                       className="h-12 w-12 aspect-square"></img>
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/prajapati-hemant/"
+                    href="https://www.linkedin.com/in/prajapatihemant/"
                     rel="noreferrer"
                     target="_blank">
                     <img
